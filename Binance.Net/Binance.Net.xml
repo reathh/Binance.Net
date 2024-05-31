@@ -18275,71 +18275,6 @@
             Status
             </summary>
         </member>
-        <member name="T:Binance.Net.Objects.Models.Spot.ConvertTransfer.BinanceConvertTransferRecord">
-            <summary>
-            Result of a convert transfer operation
-            </summary>
-        </member>
-        <member name="P:Binance.Net.Objects.Models.Spot.ConvertTransfer.BinanceConvertTransferRecord.TransferId">
-            <summary>
-            Transfer id
-            </summary>
-        </member>
-        <member name="P:Binance.Net.Objects.Models.Spot.ConvertTransfer.BinanceConvertTransferRecord.Status">
-            <summary>
-            Status of the transfer (definitions currently unknown)
-            </summary>
-        </member>
-        <member name="P:Binance.Net.Objects.Models.Spot.ConvertTransfer.BinanceConvertTransferRecord.Time">
-            <summary>
-            Timestamp
-            </summary>
-        </member>
-        <member name="P:Binance.Net.Objects.Models.Spot.ConvertTransfer.BinanceConvertTransferRecord.Type">
-            <summary>
-            Type
-            </summary>
-        </member>
-        <member name="P:Binance.Net.Objects.Models.Spot.ConvertTransfer.BinanceConvertTransferRecord.DeductedAsset">
-            <summary>
-            Deducted asset
-            </summary>
-        </member>
-        <member name="P:Binance.Net.Objects.Models.Spot.ConvertTransfer.BinanceConvertTransferRecord.DeductedQuantity">
-            <summary>
-            Deducted quantity
-            </summary>
-        </member>
-        <member name="P:Binance.Net.Objects.Models.Spot.ConvertTransfer.BinanceConvertTransferRecord.TargetAsset">
-            <summary>
-            Target asset
-            </summary>
-        </member>
-        <member name="P:Binance.Net.Objects.Models.Spot.ConvertTransfer.BinanceConvertTransferRecord.TargetQuantity">
-            <summary>
-            Target quantity
-            </summary>
-        </member>
-        <member name="P:Binance.Net.Objects.Models.Spot.ConvertTransfer.BinanceConvertTransferRecord.AccountType">
-            <summary>
-            Account type
-            </summary>
-        </member>
-        <member name="T:Binance.Net.Objects.Models.Spot.ConvertTransfer.BinanceConvertTransferResult">
-            <summary>
-            Result of a convert transfer operation
-            </summary>
-        </member>
-        <member name="P:Binance.Net.Objects.Models.Spot.ConvertTransfer.BinanceConvertTransferResult.TransferId">
-            <summary>
-            Transfer id
-            </summary>
-        </member>
-        <member name="P:Binance.Net.Objects.Models.Spot.ConvertTransfer.BinanceConvertTransferResult.Status">
-            <summary>
-            Status of the transfer (definitions currently unknown)
-            </summary>
-        </member>
         <member name="T:Binance.Net.Objects.Models.Spot.Convert.BinanceConvertAssetPair">
             <summary>
             Convert Pairs
@@ -18548,6 +18483,71 @@
         <member name="P:Binance.Net.Objects.Models.Spot.Convert.BinanceConvertTrade.CreateTime">
             <summary>
             Creation time
+            </summary>
+        </member>
+        <member name="T:Binance.Net.Objects.Models.Spot.ConvertTransfer.BinanceConvertTransferRecord">
+            <summary>
+            Result of a convert transfer operation
+            </summary>
+        </member>
+        <member name="P:Binance.Net.Objects.Models.Spot.ConvertTransfer.BinanceConvertTransferRecord.TransferId">
+            <summary>
+            Transfer id
+            </summary>
+        </member>
+        <member name="P:Binance.Net.Objects.Models.Spot.ConvertTransfer.BinanceConvertTransferRecord.Status">
+            <summary>
+            Status of the transfer (definitions currently unknown)
+            </summary>
+        </member>
+        <member name="P:Binance.Net.Objects.Models.Spot.ConvertTransfer.BinanceConvertTransferRecord.Time">
+            <summary>
+            Timestamp
+            </summary>
+        </member>
+        <member name="P:Binance.Net.Objects.Models.Spot.ConvertTransfer.BinanceConvertTransferRecord.Type">
+            <summary>
+            Type
+            </summary>
+        </member>
+        <member name="P:Binance.Net.Objects.Models.Spot.ConvertTransfer.BinanceConvertTransferRecord.DeductedAsset">
+            <summary>
+            Deducted asset
+            </summary>
+        </member>
+        <member name="P:Binance.Net.Objects.Models.Spot.ConvertTransfer.BinanceConvertTransferRecord.DeductedQuantity">
+            <summary>
+            Deducted quantity
+            </summary>
+        </member>
+        <member name="P:Binance.Net.Objects.Models.Spot.ConvertTransfer.BinanceConvertTransferRecord.TargetAsset">
+            <summary>
+            Target asset
+            </summary>
+        </member>
+        <member name="P:Binance.Net.Objects.Models.Spot.ConvertTransfer.BinanceConvertTransferRecord.TargetQuantity">
+            <summary>
+            Target quantity
+            </summary>
+        </member>
+        <member name="P:Binance.Net.Objects.Models.Spot.ConvertTransfer.BinanceConvertTransferRecord.AccountType">
+            <summary>
+            Account type
+            </summary>
+        </member>
+        <member name="T:Binance.Net.Objects.Models.Spot.ConvertTransfer.BinanceConvertTransferResult">
+            <summary>
+            Result of a convert transfer operation
+            </summary>
+        </member>
+        <member name="P:Binance.Net.Objects.Models.Spot.ConvertTransfer.BinanceConvertTransferResult.TransferId">
+            <summary>
+            Transfer id
+            </summary>
+        </member>
+        <member name="P:Binance.Net.Objects.Models.Spot.ConvertTransfer.BinanceConvertTransferResult.Status">
+            <summary>
+            Status of the transfer (definitions currently unknown)
             </summary>
         </member>
         <member name="T:Binance.Net.Objects.Models.Spot.Futures.BinanceCrossCollateralAdjustLtvHistory">
@@ -27945,6 +27945,11 @@
             The broker reference id to use
             </summary>
         </member>
+        <member name="P:Binance.Net.Objects.Options.BinanceRestApiOptions.Margin">
+            <summary>
+            Whether to use the margin endpoints
+            </summary>
+        </member>
         <member name="T:Binance.Net.Objects.Options.BinanceRestOptions">
             <summary>
             Options for the BinanceRestClient
@@ -27973,6 +27978,11 @@
         <member name="P:Binance.Net.Objects.Options.BinanceRestOptions.CoinFuturesOptions">
             <summary>
             Coin futures API options
+            </summary>
+        </member>
+        <member name="P:Binance.Net.Objects.Options.BinanceRestOptions.Margin">
+            <summary>
+            Whether to use the margin endpoints
             </summary>
         </member>
         <member name="T:Binance.Net.Objects.Options.BinanceSocketApiOptions">

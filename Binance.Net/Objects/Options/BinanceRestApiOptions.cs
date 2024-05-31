@@ -17,6 +17,7 @@ namespace Binance.Net.Objects.Options
         /// Whether to check the trade rules when placing new orders and what to do if the trade isn't valid
         /// </summary>
         public TradeRulesBehaviour TradeRulesBehaviour { get; set; } = TradeRulesBehaviour.None;
+
         /// <summary>
         /// How often the trade rules should be updated. Only used when TradeRulesBehaviour is not None
         /// </summary>
@@ -38,6 +39,7 @@ namespace Binance.Net.Objects.Options
             result.TimestampOffset = TimestampOffset;
             result.TradeRulesBehaviour = TradeRulesBehaviour;
             result.TradeRulesUpdateInterval = TradeRulesUpdateInterval;
+
             return result;
         }
     }

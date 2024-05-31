@@ -36,6 +36,11 @@ namespace Binance.Net.Objects.Options
         /// </summary>
         public BinanceRestApiOptions CoinFuturesOptions { get; private set; } = new BinanceRestApiOptions();
 
+        /// <summary>
+        /// Whether to use the margin endpoints
+        /// </summary>
+        public bool Margin { get; set; }
+
         internal BinanceRestOptions Copy()
         {
             var options = Copy<BinanceRestOptions>();
@@ -43,6 +48,7 @@ namespace Binance.Net.Objects.Options
             options.SpotOptions = SpotOptions.Copy();
             options.UsdFuturesOptions = UsdFuturesOptions.Copy();
             options.CoinFuturesOptions = CoinFuturesOptions.Copy();
+
             return options;
         }
     }

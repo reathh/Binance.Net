@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Binance.Net", "Binance.Net\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Binance.Net.UnitTests", "Binance.Net.UnitTests\Binance.Net.UnitTests.csproj", "{09E46E06-F6CA-4330-8ADF-106673480F95}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Playground", "Playground\Playground.csproj", "{D1A9BEE2-6B88-4616-A511-4AEA22F0BBAA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{09E46E06-F6CA-4330-8ADF-106673480F95}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{09E46E06-F6CA-4330-8ADF-106673480F95}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{09E46E06-F6CA-4330-8ADF-106673480F95}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D1A9BEE2-6B88-4616-A511-4AEA22F0BBAA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D1A9BEE2-6B88-4616-A511-4AEA22F0BBAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D1A9BEE2-6B88-4616-A511-4AEA22F0BBAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D1A9BEE2-6B88-4616-A511-4AEA22F0BBAA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
