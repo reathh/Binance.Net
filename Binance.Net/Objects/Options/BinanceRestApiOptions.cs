@@ -27,6 +27,11 @@ namespace Binance.Net.Objects.Options
         /// </summary>
         public string? BrokerId { get; set; }
 
+        /// <summary>
+        /// Whether to use the margin endpoints
+        /// </summary>
+        public bool Margin { get; set; }
+
         internal BinanceRestApiOptions Copy()
         {
             var result = base.Copy<BinanceRestApiOptions>();

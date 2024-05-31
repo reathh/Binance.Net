@@ -164,7 +164,9 @@ namespace Binance.Net.Clients.SpotApi
             parameters.AddOptionalParameter("cancelRestrictions", EnumConverter.GetString(cancelRestriction));
             parameters.AddOptionalParameter("recvWindow", receiveWindow?.ToString(CultureInfo.InvariantCulture) ?? _baseClient.ClientOptions.ReceiveWindow.TotalMilliseconds.ToString(CultureInfo.InvariantCulture));
 
-            var request = _definitions.GetOrCreate(HttpMethod.Delete, "api/v3/order", BinanceExchange.RateLimiter.SpotRestIp, 1, true);
+            var url = _baseClient.ApiOptions.Margin ? "sapi/v1/margin/order" : "api/v3/order";
+            
+            var request = _definitions.GetOrCreate(HttpMethod.Delete, url, BinanceExchange.RateLimiter.SpotRestIp, 1, true);
             var result = await _baseClient.SendAsync<BinanceOrderBase>(request, parameters, ct).ConfigureAwait(false);
             if (result)
                     _baseClient.InvokeOrderCanceled(new OrderId() { SourceObject = result.Data, Id = result.Data.Id.ToString(CultureInfo.InvariantCulture) });
@@ -282,10 +284,13 @@ namespace Binance.Net.Clients.SpotApi
             {
                 { "symbol", symbol }
             };
+            
+            var url = _baseClient.ApiOptions.Margin ? "sapi/v1/margin/order" : "api/v3/order";
+            
             parameters.AddOptionalParameter("orderId", orderId?.ToString(CultureInfo.InvariantCulture));
             parameters.AddOptionalParameter("origClientOrderId", origClientOrderId);
             parameters.AddOptionalParameter("recvWindow", receiveWindow?.ToString(CultureInfo.InvariantCulture) ?? _baseClient.ClientOptions.ReceiveWindow.TotalMilliseconds.ToString(CultureInfo.InvariantCulture));
-            var request = _definitions.GetOrCreate(HttpMethod.Get, "api/v3/order", BinanceExchange.RateLimiter.SpotRestIp, 4, true);
+            var request = _definitions.GetOrCreate(HttpMethod.Get, url, BinanceExchange.RateLimiter.SpotRestIp, 4, true);
             return await _baseClient.SendAsync<BinanceOrder>(request, parameters, ct).ConfigureAwait(false);
         }
 
