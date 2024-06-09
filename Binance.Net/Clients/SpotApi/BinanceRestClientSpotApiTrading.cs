@@ -577,7 +577,8 @@ namespace Binance.Net.Clients.SpotApi
         #region Margin Account New Order
 
         /// <inheritdoc />
-        public async Task<WebCallResult<BinancePlacedOrder>> PlaceMarginOrderAsync(string symbol,
+        public async Task<WebCallResult<BinancePlacedOrder>> PlaceMarginOrderAsync(
+            string symbol,
             OrderSide side,
             SpotOrderType type,
             decimal? quantity = null,
@@ -593,34 +594,43 @@ namespace Binance.Net.Clients.SpotApi
             SelfTradePreventionMode? selfTradePreventionMode = null,
             bool? autoRepayAtCancel = null,
             int? receiveWindow = null,
+            bool? usePortfolioMargin = null,
             CancellationToken ct = default)
         {
-            var result = await _baseClient.PlaceOrderInternal(_baseClient.GetUrl("margin/order", "sapi", "1"),
-                symbol,
-                side,
-                type,
-                quantity,
-                quoteQuantity,
-                newClientOrderId,
-                price,
-                timeInForce,
-                stopPrice,
-                icebergQuantity,
-                sideEffectType,
-                isIsolated,
-                orderResponseType,
-                null,
-                null,
-                null,
-                selfTradePreventionMode,
-                autoRepayAtCancel,
-                receiveWindow,
-                weight: 6,
-                BinanceExchange.RateLimiter.SpotRestUid,
-                ct).ConfigureAwait(false);
+            var url = usePortfolioMargin == true ? new Uri("https://papi.binance.com/papi/v1/margin/order") : _baseClient.GetUrl("margin/order", "sapi", "1");
+
+            var result = await _baseClient
+                .PlaceOrderInternal(url,
+                    symbol,
+                    side,
+                    type,
+                    quantity,
+                    quoteQuantity,
+                    newClientOrderId,
+                    price,
+                    timeInForce,
+                    stopPrice,
+                    icebergQuantity,
+                    sideEffectType,
+                    isIsolated,
+                    orderResponseType,
+                    null,
+                    null,
+                    null,
+                    selfTradePreventionMode,
+                    autoRepayAtCancel,
+                    receiveWindow,
+                    weight: 6,
+                    BinanceExchange.RateLimiter.SpotRestUid,
+                    ct)
+                .ConfigureAwait(false);
 
             if (result)
-                _baseClient.InvokeOrderPlaced(new OrderId { Id = result.Data.Id.ToString(CultureInfo.InvariantCulture) });
+                _baseClient.InvokeOrderPlaced(new OrderId
+                {
+                    Id = result.Data.Id.ToString(CultureInfo.InvariantCulture)
+                });
+
             return result;
         }
 
