@@ -416,13 +416,22 @@ namespace Binance.Net.Interfaces.Clients.SpotApi
         /// </summary>
         /// <param name="symbol">The symbol the order is for</param>
         /// <param name="orderId">The order id of the order</param>
-        /// <param name="isIsolated">For isolated margin or not</param>
         /// <param name="origClientOrderId">The client order id of the order</param>
         /// <param name="newClientOrderId">Unique identifier for this cancel</param>
+        /// <param name="isIsolated">For isolated margin or not</param>
         /// <param name="receiveWindow">The receive window for which this request is active. When the request takes longer than this to complete the server will reject the request</param>
+        /// <param name="usePortfolioMargin"></param>
         /// <param name="ct">Cancellation token</param>
         /// <returns>Id's for canceled order</returns>
-        Task<WebCallResult<BinanceOrderBase>> CancelMarginOrderAsync(string symbol, long? orderId = null, string? origClientOrderId = null, string? newClientOrderId = null, bool? isIsolated = null, long? receiveWindow = null, CancellationToken ct = default);
+        Task<WebCallResult<BinanceOrderBase>> CancelMarginOrderAsync(
+            string symbol,
+            long? orderId = null,
+            string? origClientOrderId = null,
+            string? newClientOrderId = null,
+            bool? isIsolated = null,
+            long? receiveWindow = null,
+            bool usePortfolioMargin = false,
+            CancellationToken ct = default);
 
         /// <summary>
         /// Cancel all active orders for a symbol
@@ -444,9 +453,11 @@ namespace Binance.Net.Interfaces.Clients.SpotApi
         /// <param name="orderId">The order id of the order</param>
         /// <param name="origClientOrderId">The client order id of the order</param>
         /// <param name="receiveWindow">The receive window for which this request is active. When the request takes longer than this to complete the server will reject the request</param>
+        /// <param name="usePortfolioMargin">Whether or not to use portfolio margin mode for this order</param>
         /// <param name="ct">Cancellation token</param>
         /// <returns>The specific margin account order</returns>
-        Task<WebCallResult<BinanceOrder>> GetMarginOrderAsync(string symbol, long? orderId = null, string? origClientOrderId = null, bool? isIsolated = null, long? receiveWindow = null, CancellationToken ct = default);
+        Task<WebCallResult<BinanceOrder>> GetMarginOrderAsync(string symbol, long? orderId = null, string? origClientOrderId = null, bool? isIsolated = null,
+            long? receiveWindow = null, bool usePortfolioMargin = false, CancellationToken ct = default);
 
         /// <summary>
         /// Gets a list of open margin account orders

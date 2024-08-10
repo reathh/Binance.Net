@@ -599,6 +599,7 @@ namespace Binance.Net.Clients.SpotApi
         {
             var url = usePortfolioMargin == true ? new Uri("https://papi.binance.com/papi/v1/margin/order") : _baseClient.GetUrl("margin/order", "sapi", "1");
 
+            var weight = usePortfolioMargin == true ? 1 : 6;
             var result = await _baseClient
                 .PlaceOrderInternal(url,
                     symbol,
@@ -620,7 +621,7 @@ namespace Binance.Net.Clients.SpotApi
                     selfTradePreventionMode,
                     autoRepayAtCancel,
                     receiveWindow,
-                    weight: 6,
+                    weight: weight,
                     BinanceExchange.RateLimiter.SpotRestUid,
                     ct)
                 .ConfigureAwait(false);
@@ -639,7 +640,9 @@ namespace Binance.Net.Clients.SpotApi
         #region Margin Account Cancel Order
 
         /// <inheritdoc />
-        public async Task<WebCallResult<BinanceOrderBase>> CancelMarginOrderAsync(string symbol, long? orderId = null, string? origClientOrderId = null, string? newClientOrderId = null, bool? isIsolated = null, long? receiveWindow = null, CancellationToken ct = default)
+        public async Task<WebCallResult<BinanceOrderBase>> CancelMarginOrderAsync(string symbol, long? orderId = null, string? origClientOrderId = null, 
+            string? newClientOrderId = null, bool? isIsolated = null, long? receiveWindow = null, bool usePortfolioMargin = false, CancellationToken ct = 
+                default)
         {
             if (!orderId.HasValue && string.IsNullOrEmpty(origClientOrderId))
                 throw new ArgumentException("Either orderId or origClientOrderId must be sent");
@@ -654,7 +657,9 @@ namespace Binance.Net.Clients.SpotApi
             parameters.AddOptionalParameter("newClientOrderId", newClientOrderId);
             parameters.AddOptionalParameter("recvWindow", receiveWindow?.ToString(CultureInfo.InvariantCulture) ?? _baseClient.ClientOptions.ReceiveWindow.TotalMilliseconds.ToString(CultureInfo.InvariantCulture));
 
-            var request = _definitions.GetOrCreate(HttpMethod.Delete, "sapi/v1/margin/order", BinanceExchange.RateLimiter.SpotRestIp, 10, true);
+            var weight = usePortfolioMargin ? 2 : 10;
+            
+            var request = _definitions.GetOrCreate(HttpMethod.Delete, "sapi/v1/margin/order", BinanceExchange.RateLimiter.SpotRestIp, weight, true);
             var result = await _baseClient.SendAsync<BinanceOrderBase>(request, parameters, ct).ConfigureAwait(false);
             if (result)
                 _baseClient.InvokeOrderCanceled(new OrderId { Id = result.Data.Id.ToString(CultureInfo.InvariantCulture) });
@@ -684,7 +689,8 @@ namespace Binance.Net.Clients.SpotApi
         #region Query Margin Account's Order
 
         /// <inheritdoc />
-        public async Task<WebCallResult<BinanceOrder>> GetMarginOrderAsync(string symbol, long? orderId = null, string? origClientOrderId = null, bool? isIsolated = null, long? receiveWindow = null, CancellationToken ct = default)
+        public async Task<WebCallResult<BinanceOrder>> GetMarginOrderAsync(string symbol, long? orderId = null, string? origClientOrderId = null, bool? 
+                isIsolated = null, long? receiveWindow = null, bool usePortfolioMargin = false, CancellationToken ct = default)
         {
             if (orderId == null && origClientOrderId == null)
                 throw new ArgumentException("Either orderId or origClientOrderId should be provided");
@@ -698,7 +704,9 @@ namespace Binance.Net.Clients.SpotApi
             parameters.AddOptionalParameter("origClientOrderId", origClientOrderId);
             parameters.AddOptionalParameter("recvWindow", receiveWindow?.ToString(CultureInfo.InvariantCulture) ?? _baseClient.ClientOptions.ReceiveWindow.TotalMilliseconds.ToString(CultureInfo.InvariantCulture));
 
-            var request = _definitions.GetOrCreate(HttpMethod.Get, "sapi/v1/margin/order", BinanceExchange.RateLimiter.SpotRestIp, 10, true);
+            var weight = usePortfolioMargin ? 5 : 10;
+            
+            var request = _definitions.GetOrCreate(HttpMethod.Get, "sapi/v1/margin/order", BinanceExchange.RateLimiter.SpotRestIp, weight, true);
             return await _baseClient.SendAsync<BinanceOrder>(request, parameters, ct).ConfigureAwait(false);
         }
 
